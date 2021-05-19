@@ -1,8 +1,9 @@
-<?php namespace CoreProc\Paynamics\Paygate;
+<?php
+
+namespace CoreProc\Paynamics\Paygate;
 
 class PaygateRequest implements RequestInterface
 {
-
     /**
      * @var ClientInterface
      */

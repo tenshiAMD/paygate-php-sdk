@@ -1,4 +1,6 @@
-<?php namespace CoreProc\Paynamics\Paygate\Laravel\Facades;
+<?php
+
+namespace CoreProc\Paynamics\Paygate\Laravel\Facades;
 
 class Paygate extends \Illuminate\Support\Facades\Facade
 {
@@ -7,4 +9,3 @@ class Paygate extends \Illuminate\Support\Facades\Facade
         return 'paygate';
     }
 }
-

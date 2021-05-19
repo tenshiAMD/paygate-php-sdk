@@ -1,11 +1,12 @@
-<?php namespace CoreProc\Paynamics\Paygate;
+<?php
+
+namespace CoreProc\Paynamics\Paygate;
 
 use Exception;
 use GuzzleHttp\Client as GuzzleClient;
 
 interface ClientInterface
 {
-
     /**
      * Sets configuration
      *

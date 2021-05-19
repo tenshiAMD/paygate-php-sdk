@@ -1,4 +1,6 @@
-<?php namespace CoreProc\Paynamics\Paygate;
+<?php
+
+namespace CoreProc\Paynamics\Paygate;
 
 class ItemGroup implements ItemGroupInterface
 {

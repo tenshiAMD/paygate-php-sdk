@@ -1,11 +1,14 @@
-<?php namespace CoreProc\Paynamics\Paygate;
+<?php
+
+namespace CoreProc\Paynamics\Paygate;
 
 use CoreProc\Paynamics\Paygate\Mixins\AttributesToXml;
 use CoreProc\Paynamics\Paygate\Mixins\SignatureGenerator;
 
 class RequestBody implements RequestBodyInterface
 {
-    use AttributesToXml, SignatureGenerator;
+    use AttributesToXml;
+    use SignatureGenerator;
 
     protected $fillable = [
         '_method',
@@ -55,7 +58,7 @@ class RequestBody implements RequestBodyInterface
      */
     public function __construct(array $attributes = [])
     {
-        foreach($this->fillable as $key) {
+        foreach ($this->fillable as $key) {
             $this->setAttribute($key, null);
         }
 
@@ -125,7 +128,7 @@ class RequestBody implements RequestBodyInterface
      */
     public function setAttributes($attributes)
     {
-        foreach($attributes as $key => $value) {
+        foreach ($attributes as $key => $value) {
             $this->setAttribute($key, $value);
         }
 

@@ -1,4 +1,6 @@
-<?php namespace CoreProc\Paynamics\Paygate\Mixins;
+<?php
+
+namespace CoreProc\Paynamics\Paygate\Mixins;
 
 use CoreProc\Paynamics\Paygate\ClientInterface;
 
@@ -6,8 +8,7 @@ trait SignatureGenerator
 {
     public function generateRequestSignature(ClientInterface $client)
     {
-
-        switch($this->_method) {
+        switch ($this->_method) {
             /*
              * For Refund / Reverse Payment
              *

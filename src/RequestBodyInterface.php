@@ -1,8 +1,9 @@
-<?php namespace CoreProc\Paynamics\Paygate;
+<?php
+
+namespace CoreProc\Paynamics\Paygate;
 
 interface RequestBodyInterface
 {
-
     /**
      * Get request body attribute by key
      *

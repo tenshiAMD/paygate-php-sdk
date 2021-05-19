@@ -1,8 +1,9 @@
-<?php namespace CoreProc\Paynamics\Paygate;
+<?php
 
-interface ItemGroupInterface {
+namespace CoreProc\Paynamics\Paygate;
 
-
+interface ItemGroupInterface
+{
     /**
      * Adds an Item to the ItemGroup
      *
@@ -24,5 +25,4 @@ interface ItemGroupInterface {
      * @return array
      */
     public function toArray();
-
 }

@@ -1,9 +1,11 @@
-<?php namespace CoreProc\Paynamics\Paygate\Constants;
+<?php
+
+namespace CoreProc\Paynamics\Paygate\Constants;
 
 class Secure3d
 {
-    const TRY3D = 'try3d';
-    const ENABLED = 'enabled';
+    public const TRY3D = 'try3d';
+    public const ENABLED = 'enabled';
 
     public static function toArray()
     {

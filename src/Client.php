@@ -1,4 +1,6 @@
-<?php namespace CoreProc\Paynamics\Paygate;
+<?php
+
+namespace CoreProc\Paynamics\Paygate;
 
 use CoreProc\Paynamics\Paygate\Constants\Secure3d;
 use CoreProc\Paynamics\Paygate\Constants\TransactionType;
@@ -7,7 +9,7 @@ use Exception;
 
 class Client implements ClientInterface
 {
-    const ENDPOINT = '/webpayment/default.aspx';
+    public const ENDPOINT = '/webpayment/default.aspx';
 
     /**
      * @var string
@@ -99,7 +101,7 @@ class Client implements ClientInterface
      */
     public function setSandbox($sandbox = false)
     {
-        if ( ! is_bool($sandbox)) {
+        if (! is_bool($sandbox)) {
             throw new Exception("Sandbox value should be boolean");
         }
 
@@ -137,7 +139,7 @@ class Client implements ClientInterface
      */
     public function setMerchantId($merchantId)
     {
-        if ( ! is_string($merchantId)) {
+        if (! is_string($merchantId)) {
             throw new Exception("Merchant ID should be string");
         }
 
@@ -155,7 +157,7 @@ class Client implements ClientInterface
      */
     public function setMerchantKey($merchantKey)
     {
-        if ( ! is_string($merchantKey)) {
+        if (! is_string($merchantKey)) {
             throw new Exception("Merchant Key should be string");
         }
 
@@ -191,11 +193,11 @@ class Client implements ClientInterface
         $secure3d = $options['secure3d'] ?? Secure3d::TRY3D;
         $expiryLimit = $options['expiryLimit'] ?? null;
 
-        if ( ! in_array($transactionType, TransactionType::toArray())) {
+        if (! in_array($transactionType, TransactionType::toArray())) {
             throw new Exception('Invalid transaction type');
         }
 
-        if ( ! in_array($secure3d, Secure3d::toArray())) {
+        if (! in_array($secure3d, Secure3d::toArray())) {
             throw new Exception('Invalid Secure3d option');
         }
 
@@ -292,7 +294,7 @@ class Client implements ClientInterface
      */
     public function rebill(RequestBodyInterface $requestBody, $requestId, $responseId, $token, $transactionType = TransactionType::SALE, $amount, $requestUrl = self::ENDPOINT)
     {
-        if ( ! in_array($transactionType, TransactionType::toArray())) {
+        if (! in_array($transactionType, TransactionType::toArray())) {
             throw new Exception('Invalid transaction type');
         }
 

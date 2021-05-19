@@ -1,11 +1,12 @@
-<?php namespace CoreProc\Paynamics\Paygate\Laravel;
+<?php
+
+namespace CoreProc\Paynamics\Paygate\Laravel;
 
 use CoreProc\Paynamics\Paygate\Client;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
 class ServiceProvider extends LaravelServiceProvider
 {
-
     /**
      * Perform post-registration booting of services.
      *
@@ -39,5 +40,4 @@ class ServiceProvider extends LaravelServiceProvider
             });
         }
     }
-
 }

@@ -1,10 +1,11 @@
-<?php namespace CoreProc\Paynamics\Paygate;
+<?php
+
+namespace CoreProc\Paynamics\Paygate;
 
 use Exception;
 
 interface RequestInterface
 {
-
     /**
      * Returns the assigned Paynamics client
      *
