@@ -10,7 +10,7 @@ return [
 
     'url' => [
 
-        'sandbox' => env('PAYGATE_SANDBOX_URL', 'https://testpti.payserv.net/webpaymentV2/default.aspx'),
+        'sandbox' => env('PAYGATE_SANDBOX_URL', 'https://testpti.payserv.net'),
 
         'production' => env('PAYGATE_PRODUCTION_URL', ''),
 

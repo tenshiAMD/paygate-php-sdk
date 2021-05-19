@@ -6,6 +6,8 @@ use Exception;
 
 class Client implements ClientInterface
 {
+    const ENDPOINT = '/webpaymentv2/default.aspx';
+
     /**
      * @var string
      */
@@ -182,7 +184,7 @@ class Client implements ClientInterface
      * @param null $expiryLimit
      * @return string
      */
-    public function responsivePayment(RequestBodyInterface $requestBody, $requestId, $transactionType = TransactionType::SALE, $secure3d = Secure3d::TRY3D, $expiryLimit = null)
+    public function responsivePayment(RequestBodyInterface $requestBody, $requestId, $transactionType = TransactionType::SALE, $secure3d = Secure3d::TRY3D, $expiryLimit = null, $requestUrl = self::ENDPOINT)
     {
         if ( ! in_array($transactionType, TransactionType::toArray())) {
             throw new Exception('Invalid transaction type');
@@ -201,7 +203,7 @@ class Client implements ClientInterface
             'expiry_limit' => $expiryLimit ? $this->dateTimeFormat($expiryLimit) : null
         ]);
 
-        return $this->createRequest($requestBody)->generateForm();
+        return $this->createRequest($requestBody)->generateForm($requestUrl);
     }
 
     /**
@@ -215,7 +217,7 @@ class Client implements ClientInterface
      * @param $amount
      * @return string
      */
-    public function reversePayment(RequestBodyInterface $requestBody, $requestId, $responseId, $amount)
+    public function reversePayment(RequestBodyInterface $requestBody, $requestId, $responseId, $amount, $requestUrl = self::ENDPOINT)
     {
         $requestBody->setAttributes([
             '_method' => __METHOD__,
@@ -224,7 +226,7 @@ class Client implements ClientInterface
             'amount' => number_format($amount, 2)
         ]);
 
-        return $this->createRequest($requestBody)->generateForm();
+        return $this->createRequest($requestBody)->generateForm($requestUrl);
     }
 
     /**
@@ -238,7 +240,7 @@ class Client implements ClientInterface
      * @param string $responseId2
      * @return string
      */
-    public function query(RequestBodyInterface $requestBody, $requestId, $responseId, $responseId2 = null)
+    public function query(RequestBodyInterface $requestBody, $requestId, $responseId, $responseId2 = null, $requestUrl = self::ENDPOINT)
     {
         $requestBody->setAttributes([
             '_method' => __METHOD__,
@@ -247,7 +249,7 @@ class Client implements ClientInterface
             'org_trxid2' => $responseId2,
         ]);
 
-        return $this->createRequest($requestBody)->generateForm();
+        return $this->createRequest($requestBody)->generateForm($requestUrl);
     }
 
     /**
@@ -260,7 +262,7 @@ class Client implements ClientInterface
      * @param string $endDate
      * @return string
      */
-    public function disputeQuery(RequestBodyInterface $requestBody, $requestId, $startDate, $endDate)
+    public function disputeQuery(RequestBodyInterface $requestBody, $requestId, $startDate, $endDate, $requestUrl = self::ENDPOINT)
     {
         $requestBody->setAttributes([
             '_method' => __METHOD__,
@@ -269,7 +271,7 @@ class Client implements ClientInterface
             'dispute_end_date' => $this->dateTimeFormat($endDate),
         ]);
 
-        return $this->createRequest($requestBody)->generateForm();
+        return $this->createRequest($requestBody)->generateForm($requestUrl);
     }
 
     /**
@@ -283,7 +285,7 @@ class Client implements ClientInterface
      * @param string $endDate
      * @return string
      */
-    public function rebill(RequestBodyInterface $requestBody, $requestId, $responseId, $token, $transactionType = TransactionType::SALE, $amount)
+    public function rebill(RequestBodyInterface $requestBody, $requestId, $responseId, $token, $transactionType = TransactionType::SALE, $amount, $requestUrl = self::ENDPOINT)
     {
         if ( ! in_array($transactionType, TransactionType::toArray())) {
             throw new Exception('Invalid transaction type');
@@ -299,7 +301,7 @@ class Client implements ClientInterface
             'amount' => number_format($amount, 2),
         ]);
 
-        return $this->createRequest($requestBody)->generateForm();
+        return $this->createRequest($requestBody)->generateForm($requestUrl);
     }
 
     /**

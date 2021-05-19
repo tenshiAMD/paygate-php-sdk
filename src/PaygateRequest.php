@@ -73,8 +73,11 @@ class PaygateRequest implements RequestInterface
     public function generateForm()
     {
         $client = $this->getClient();
-        $url = $client->getRequestUrl();
+
         $requestBody = $this->getRequestBody();
+
+        $url = $client->getRequestUrl() . ($requestUrl ?? '/webpaymentv2/default.aspx');
+
         $requestBody->setDefaults($client);
 
         // Generate auto-submit form
