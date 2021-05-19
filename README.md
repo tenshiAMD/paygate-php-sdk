@@ -18,8 +18,9 @@ $client = new \CoreProc\Paynamics\Paygate\Client([
 ##### Create Request Body 
 Please refer to the API Documentation for the request body parameters.
 ```
+$requestId = substr(uniqid(), 1, 13);
 $requestBody = new \CoreProc\Paynamics\Paygate\RequestBody([
-    'request_id' => substr(uniqid(), 1, 13),
+    'request_id' => $requestId,
     'fname' => 'Paynamics',
     'lname' => 'Buyer',
     'address1' => '101 Oval St.',
@@ -61,7 +62,7 @@ $requestBody->setItemGroup($items);
 ##### Execute
 All request by the `Client` will return an auto-submit form in string.
 ```
-$client->responsivePayment($requestBody);
+$client->responsivePayment($requestBody, $requestId);
 ```
 
 #### Laravel Support
