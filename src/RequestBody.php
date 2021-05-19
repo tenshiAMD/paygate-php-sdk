@@ -72,7 +72,7 @@ class RequestBody implements RequestBodyInterface
     {
         $defaults = [
             'mid' => $client->getMerchantId(),
-            'ip_address' => $_SERVER['SERVER_ADDR'],
+            'ip_address' => $_SERVER['SERVER_ADDR'] ?? '127.0.0.1',
         ];
 
         $this->setAttributes(array_replace($this->getAttributes(), $defaults));

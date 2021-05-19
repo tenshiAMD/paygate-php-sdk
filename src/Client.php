@@ -194,7 +194,7 @@ class Client implements ClientInterface
 
         $requestBody->setAttributes([
             '_method' => __METHOD__,
-            'client_ip' => $_SERVER['REMOTE_ADDR'],
+            'client_ip' => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1',
             'request_id' => $requestId,
             'secure3d' => $secure3d,
             'trxtype' => $transactionType,
@@ -291,7 +291,7 @@ class Client implements ClientInterface
 
         $requestBody->setAttributes([
             '_method' => __METHOD__,
-            'client_ip' => $_SERVER['REMOTE_ADDR'],
+            'client_ip' => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1',
             'request_id' => $requestId,
             'org_trxid' => $responseId,
             'token_id' => $token,
