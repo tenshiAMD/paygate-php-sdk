@@ -18,9 +18,8 @@ $client = new \CoreProc\Paynamics\Paygate\Client([
 ##### Create Request Body 
 Please refer to the API Documentation for the request body parameters.
 ```
-$requestId = substr(uniqid(), 1, 13);
-$requestBody = new \CoreProc\Paynamics\Paygate\RequestBody([
-    'request_id' => $requestId,
+$options = [
+    'request_id' => substr(uniqid(), 1, 13) ,
     'fname' => 'Paynamics',
     'lname' => 'Buyer',
     'address1' => '101 Oval St.',
@@ -39,7 +38,8 @@ $requestBody = new \CoreProc\Paynamics\Paygate\RequestBody([
     'cancel_url' => 'http://example.com/cancel',
     'mtac_url' => 'http://example.com/tnc',
     'mlogo_url' => 'http://example.com/assets/logo.png',
-]);
+];
+$requestBody = new \CoreProc\Paynamics\Paygate\RequestBody($options);
 ```
 
 ##### Create Item Group and add Item
@@ -62,7 +62,13 @@ $requestBody->setItemGroup($items);
 ##### Execute
 All request by the `Client` will return an auto-submit form in string.
 ```
-$client->responsivePayment($requestBody, $requestId);
+$options = array_merge([
+    'requestUrl' => '/webpayment/default.aspx',
+], $options);
+
+$requestId = $options['request_id'];
+
+$client->responsivePayment($requestBody, $requestId, $options);
 ```
 
 #### Laravel Support

@@ -38,7 +38,8 @@ interface RequestInterface
     /**
      * Creates an auto-submit form that will redirect to the payment gateway
      *
+     * @param string $requestUrl
      * @return string
      */
-    public function generateForm();
+    public function generateForm($requestUrl);
 }

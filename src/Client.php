@@ -2,11 +2,12 @@
 
 use CoreProc\Paynamics\Paygate\Constants\Secure3d;
 use CoreProc\Paynamics\Paygate\Constants\TransactionType;
+
 use Exception;
 
 class Client implements ClientInterface
 {
-    const ENDPOINT = '/webpaymentv2/default.aspx';
+    const ENDPOINT = '/webpayment/default.aspx';
 
     /**
      * @var string
@@ -178,14 +179,18 @@ class Client implements ClientInterface
      * Executes Responsive Payment Transaction
      *
      * @param RequestBodyInterface $requestBody
-     * @param string $requestId
-     * @param string $transactionType
-     * @param string $secure3d
-     * @param null $expiryLimit
+     * @param array $options
      * @return string
      */
-    public function responsivePayment(RequestBodyInterface $requestBody, $requestId, $transactionType = TransactionType::SALE, $secure3d = Secure3d::TRY3D, $expiryLimit = null, $requestUrl = self::ENDPOINT)
+    public function responsivePayment(RequestBodyInterface $requestBody, $requestId, $options = [])
     {
+        $options = array_merge([], $options);
+
+        $requestUrl = $options['requestUrl'] ?? self::ENDPOINT;
+        $transactionType = $options['transactionType'] ?? TransactionType::SALE;
+        $secure3d = $options['secure3d'] ?? Secure3d::TRY3D;
+        $expiryLimit = $options['expiryLimit'] ?? null;
+
         if ( ! in_array($transactionType, TransactionType::toArray())) {
             throw new Exception('Invalid transaction type');
         }

@@ -68,15 +68,16 @@ class PaygateRequest implements RequestInterface
     /**
      * Creates an auto-submit form that will redirect to the payment gateway
      *
+     * @param string $requestUrl
      * @return string
      */
-    public function generateForm()
+    public function generateForm($requestUrl)
     {
         $client = $this->getClient();
 
         $requestBody = $this->getRequestBody();
 
-        $url = $client->getRequestUrl() . ($requestUrl ?? '/webpaymentv2/default.aspx');
+        $url = $client->getRequestUrl() . $requestUrl;
 
         $requestBody->setDefaults($client);
 
